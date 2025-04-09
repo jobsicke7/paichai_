@@ -38,8 +38,10 @@ const subjectScheduleByGradeAndClass: {
 
 const getDateRangeForWeek = () => {
   const today = new Date();
+  const dayOfWeek = today.getDay();
+  const diffToMonday = (dayOfWeek + 6) % 7;
   const monday = new Date(today);
-  monday.setDate(today.getDate() - ((today.getDay() + 6) % 7));
+  monday.setDate(today.getDate() - diffToMonday);
   const friday = new Date(monday);
   friday.setDate(monday.getDate() + 4);
   const format = (d: Date) => d.toISOString().split('T')[0].replace(/-/g, '');
@@ -83,7 +85,7 @@ const getSubjectTimetable = (profile: UserProfile) => {
 
 interface CacheData {
   data: Record<string, Record<number, string>>;
-  subjectCells: Record<string, Array<number>>;
+  subjectCells: Record<string, Set<number>>;
   profile: {
     grade: number;
     class: number;
@@ -103,11 +105,9 @@ const Timetable: React.FC<TimetableProps> = ({ profile, isLoggedIn }) => {
       const cachedDataStr = localStorage.getItem(TIMETABLE_CACHE_KEY);
       const cachedTimestampStr = localStorage.getItem(TIMETABLE_CACHE_TIMESTAMP_KEY);
       if (!cachedDataStr || !cachedTimestampStr) return null;
-      
       const cachedData: CacheData = JSON.parse(cachedDataStr);
       const timestamp = parseInt(cachedTimestampStr, 10);
       const now = Date.now();
-      
       if (now - timestamp > CACHE_EXPIRY_TIME || 
           !profile || 
           !cachedData.profile ||
@@ -115,12 +115,10 @@ const Timetable: React.FC<TimetableProps> = ({ profile, isLoggedIn }) => {
           profile.class !== cachedData.profile.class) {
         return null;
       }
-      
       const restoredSubjectCells: Record<string, Set<number>> = {};
       for (const day in cachedData.subjectCells) {
         restoredSubjectCells[day] = new Set(cachedData.subjectCells[day]);
       }
-      
       return {
         data: cachedData.data,
         subjectCells: restoredSubjectCells
@@ -140,10 +138,9 @@ const Timetable: React.FC<TimetableProps> = ({ profile, isLoggedIn }) => {
       for (const day in subjectCells) {
         serializedSubjectCells[day] = Array.from(subjectCells[day]);
       }
-      
       const cacheData: CacheData = {
         data,
-        subjectCells: serializedSubjectCells,
+        subjectCells: serializedSubjectCells as any,
         profile: profile ? {
           grade: profile.grade,
           class: profile.class,
@@ -151,7 +148,6 @@ const Timetable: React.FC<TimetableProps> = ({ profile, isLoggedIn }) => {
         } : null,
         timestamp: Date.now()
       };
-      
       localStorage.setItem(TIMETABLE_CACHE_KEY, JSON.stringify(cacheData));
       localStorage.setItem(TIMETABLE_CACHE_TIMESTAMP_KEY, Date.now().toString());
     } catch (error) {
@@ -165,7 +161,6 @@ const Timetable: React.FC<TimetableProps> = ({ profile, isLoggedIn }) => {
         setIsLoading(false);
         return;
       }
-      
       const cachedData = loadFromCache();
       if (cachedData) {
         setData(cachedData.data);
@@ -173,7 +168,6 @@ const Timetable: React.FC<TimetableProps> = ({ profile, isLoggedIn }) => {
         setIsLoading(false);
         return;
       }
-      
       try {
         const { from, to } = getDateRangeForWeek();
         const res = await fetch(
@@ -243,7 +237,7 @@ const Timetable: React.FC<TimetableProps> = ({ profile, isLoggedIn }) => {
           {profile ? `${profile.grade}학년 ${profile.class}반 시간표 ⏰` : '시간표 ⏰'}
         </h2>
         {isLoading ? (
-          <div className={styles.loadingMessage}></div>
+          <div className={styles.loadingMessage}>시간표를 불러오는 중...</div>
         ) : (
           <table className={styles.timetable}>
             <thead>
