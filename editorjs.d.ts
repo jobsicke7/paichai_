@@ -1,4 +1,3 @@
-// editorjs.d.ts
 declare module '@editorjs/editorjs';
 declare module '@editorjs/header';
 declare module '@editorjs/list';
