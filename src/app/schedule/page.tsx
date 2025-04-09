@@ -35,12 +35,17 @@ export default function Home() {
     fetchProfile();
   }, [fetchProfile]);
 
-  if (loading) return <div></div>;
+  if (loading) return (
+    <div className={styles.container}>
+      <div className={styles.contentSection}>
+      <Timetable profile={profile} isLoggedIn={isLoggedIn} />
+      </div>
+    </div>
+    );
 
   return (
     <div className={styles.container}>
       <div className={styles.contentSection}>
-
       <Timetable profile={profile} isLoggedIn={isLoggedIn} />
       </div>
     </div>

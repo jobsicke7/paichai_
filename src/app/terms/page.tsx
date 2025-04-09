@@ -1,26 +1,25 @@
 import { supabase } from '@/lib/supabase';
 import DocViewer from '@/component/DocViewer';
+import { cache } from 'react';
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+const getDocContent = cache(async (type: string) => {
+  try {
+    const { data, error } = await supabase
+      .from('docs')
+      .select('*')
+      .eq('type', type)
+      .single();
+    
+    return data?.content || '';
+  } catch (error) {
+    console.error('Failed to fetch document:', error);
+    return '';
+  }
+});
+
+export const revalidate = 600;
 
 export default async function TermsPage() {
-    let content = '';
-
-    try {
-        const { data, error } = await supabase
-            .from('docs')
-            .select('*')
-            .eq('type', 'terms')
-            .single();
-
-        if (data && data.content) {
-            content = data.content;
-        } else {
-        }
-    } catch (error) {
-        console.error('Failed to fetch document:', error);
-    }
-
-    return <DocViewer content={content} title="이용약관" docType='terms' />;
+  const content = await getDocContent('terms');
+  return <DocViewer content={content} title="이용약관" docType='terms' />;
 }

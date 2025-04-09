@@ -52,6 +52,10 @@ export default function DocViewer({ content, title, docType}: DocViewerProps) {
         }
     }, [content]);
 
+    const handleRefresh = () => {
+        router.refresh();
+    };
+
     const handleTitleClick = () => {
         const newCount = clickCount + 1;
         setClickCount(newCount);
@@ -93,7 +97,9 @@ export default function DocViewer({ content, title, docType}: DocViewerProps) {
     if (!parsedContent) {
         return (
             <div className={styles.container}>
-                <h1 className={styles.title} onClick={handleTitleClick}>{title}</h1>
+                <div className={styles.headerContainer}>
+                    <h1 className={styles.title} onClick={handleTitleClick}>{title}</h1>
+                </div>
                 <p className={styles.empty}>내용이 없습니다.</p>
             </div>
         );
@@ -101,7 +107,9 @@ export default function DocViewer({ content, title, docType}: DocViewerProps) {
 
     return (
         <div className={styles.container}>
-            <h1 className={styles.title} onClick={handleTitleClick}>{title}</h1>
+            <div className={styles.headerContainer}>
+                <h1 className={styles.title} onClick={handleTitleClick}>{title}</h1>
+            </div>
             <div className={styles.content}>
                 {parsedContent.blocks?.map((block: any, index: number) => {
                     switch (block.type) {

@@ -1,27 +1,25 @@
 import { supabase } from '@/lib/supabase';
 import DocViewer from '@/component/DocViewer';
+import { cache } from 'react';
 
+const getDocContent = cache(async (type: string) => {
+  try {
+    const { data, error } = await supabase
+      .from('docs')
+      .select('*')
+      .eq('type', type)
+      .single();
+    
+    return data?.content || '';
+  } catch (error) {
+    console.error('Failed to fetch document:', error);
+    return '';
+  }
+});
 
-export const dynamic = 'force-dynamic';
-export const revalidate = 0;
+export const revalidate = 600;
 
 export default async function PrivacyPage() {
-    let content = '';
-
-    try {
-        const { data, error } = await supabase
-            .from('docs')
-            .select('*')
-            .eq('type', 'privacy')
-            .single();
-
-        if (data && data.content) {
-            content = data.content;
-        } else {
-        }
-    } catch (error) {
-        console.error('Failed to fetch document:', error);
-    }
-
-    return <DocViewer content={content} title="개인정보처리방침" docType='privacy'/>;
+  const content = await getDocContent('privacy');
+  return <DocViewer content={content} title="개인정보처리방침" docType='privacy' />;
 }

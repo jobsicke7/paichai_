@@ -4,40 +4,49 @@ import React, { useEffect, useState, useCallback, useRef } from 'react';
 import Image from 'next/image';
 import styles from './ImageBanner.module.css';
 
-interface BannersConfig {
-  count: number;
-}
-
 const ImageBanner: React.FC = () => {
   const [banners, setBanners] = useState<string[]>([]);
   const [currentBannerIndex, setCurrentBannerIndex] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [usePublicBanners, setUsePublicBanners] = useState(false);
   const autoSlideTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const refreshTimestampRef = useRef<number>(Date.now());
 
   const loadBanners = useCallback(async () => {
     setIsLoading(true);
   
     try {
-      const cachedBanners = sessionStorage.getItem('banners');
-      if (cachedBanners) {
-        setBanners(JSON.parse(cachedBanners));
+      const cachedData = localStorage.getItem('bannerCache');
+      const cachedTimestamp = localStorage.getItem('bannerCacheTimestamp');
+      const currentTime = Date.now();
+      
+      const isReload = performance.navigation && performance.navigation.type === 1;
+      
+      if (cachedData && cachedTimestamp && 
+          !isReload &&
+          currentTime - parseInt(cachedTimestamp) < 3600000) {
+        setBanners(JSON.parse(cachedData));
         setIsLoading(false);
         return;
       }
   
-      const res = await fetch('/api/banners');
+      const res = await fetch('/api/banners', {
+        cache: 'no-store',
+        headers: { 'Cache-Control': 'no-cache' }
+      });
       const data = await res.json();
   
       if (data.fallback) {
         setUsePublicBanners(true);
         const defaultBanners = ['/banners/1.jpg', '/banners/2.jpg', '/banners/3.jpg'];
         setBanners(defaultBanners);
+        localStorage.setItem('bannerCache', JSON.stringify(defaultBanners));
       } else {
         setBanners(data.banners);
+        localStorage.setItem('bannerCache', JSON.stringify(data.banners));
       }
-  
-      sessionStorage.setItem('banners', JSON.stringify(data.banners));
+      
+      localStorage.setItem('bannerCacheTimestamp', currentTime.toString());
     } catch (error) {
       console.error("Failed to fetch banners:", error);
       setUsePublicBanners(true);
@@ -47,7 +56,6 @@ const ImageBanner: React.FC = () => {
       setIsLoading(false);
     }
   }, []);
-  
 
   const handleImageError = useCallback((index: number) => {
     setBanners(prevBanners => {
@@ -93,10 +101,24 @@ const ImageBanner: React.FC = () => {
   }, [banners.length]);
 
   useEffect(() => {
-    if (performance?.navigation?.type === 1) {
-      sessionStorage.removeItem('banners');
+    const isReload = performance.navigation && performance.navigation.type === 1;
+    
+    if (isReload) {
+      localStorage.removeItem('bannerCache');
+      localStorage.removeItem('bannerCacheTimestamp');
+      refreshTimestampRef.current = Date.now();
     }
+    
     loadBanners();
+    
+    window.addEventListener('focus', () => {
+      const now = Date.now();
+      if (now - refreshTimestampRef.current > 300000) {
+        loadBanners();
+        refreshTimestampRef.current = now;
+      }
+    });
+    
   }, [loadBanners]);
 
   useEffect(() => {
@@ -108,6 +130,17 @@ const ImageBanner: React.FC = () => {
       }
     };
   }, [banners, startAutoSlideTimer]);
+
+  useEffect(() => {
+    const preloadNextImage = () => {
+      if (banners.length <= 1) return;
+      const nextIndex = (currentBannerIndex + 1) % banners.length;
+      const preloadImg = document.createElement('img');
+      preloadImg.src = banners[nextIndex];
+    };
+    
+    preloadNextImage();
+  }, [currentBannerIndex, banners]);
 
   if (isLoading) {
     return (
@@ -139,15 +172,16 @@ const ImageBanner: React.FC = () => {
                 alt={`Banner ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, 1200px"
-                priority={index === currentBannerIndex}
+                priority={index === 0}
                 className={styles.bannerImage}
                 onError={() => handleImageError(index)}
               />
             ) : (
               <img 
                 src={banner} 
-                alt={`Banner ${index + 1}`}
                 className={styles.bannerImage}
+                alt={`Banner ${index + 1}`}
+                loading={index === 0 ? "eager" : "lazy"}
                 onError={() => handleImageError(index)}
               />
             )}
