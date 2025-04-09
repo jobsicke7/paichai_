@@ -43,7 +43,7 @@ const getDateRangeForWeek = () => {
   const monday = new Date(today);
   monday.setDate(today.getDate() - diffToMonday);
   const friday = new Date(monday);
-  friday.setDate(monday.getDate() + 4);
+  friday.setDate(monday.getDate() + 5);
   const format = (d: Date) => d.toISOString().split('T')[0].replace(/-/g, '');
   return {
     from: format(monday),
