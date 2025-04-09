@@ -1,0 +1,186 @@
+.bannerContainer {
+    width: 100%;
+    position: relative;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bannerContent {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    background-color: #f0f0f0;
+    overflow: hidden;
+  }
+  
+  [data-theme='dark'] .bannerContent {
+    background-color: #222222;
+  }
+  
+  .bannerItem {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 1;
+  }
+  
+  .active {
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .bannerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .navigation {
+    position: absolute;
+    bottom: 16px;
+    right: 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  
+  .navButton {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #333;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  [data-theme='dark'] .navButton {
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+  }
+  
+  .navButton:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transform: scale(1.05);
+  }
+  
+  [data-theme='dark'] .navButton:hover {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .indicators {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+  }
+  
+  .indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: width 0.3s ease, background-color 0.3s ease;
+  }
+  
+  .activeIndicator {
+    width: 24px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.9);
+  }
+  
+  [data-theme='dark'] .indicator {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  [data-theme='dark'] .activeIndicator {
+    background-color: rgba(0, 0, 0, 0.9);
+  }
+  
+  .bannerSkeleton {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+  
+  [data-theme='dark'] .bannerSkeleton {
+    background-color: #333333;
+  }
+  
+  .skeletonAnimation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    animation: shimmer 1.5s infinite;
+  }
+  
+  [data-theme='dark'] .skeletonAnimation {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  }
+  
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  
+  .noBanner {
+    width: 100%;
+    aspect-ratio: 3 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    color: #777;
+    font-size: 16px;
+  }
+  
+  [data-theme='dark'] .noBanner {
+    background-color: #222222;
+    color: #aaa;
+  }
+  
+  @media (max-width: 768px) {
+    .bannerContent {
+      aspect-ratio: 16 / 9;
+    }
+    
+    .navigation {
+      bottom: 12px;
+      right: 12px;
+    }
+    
+    .navButton {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .indicators {
+      bottom: 12px;
+      left: 12px;
+    }
+  }

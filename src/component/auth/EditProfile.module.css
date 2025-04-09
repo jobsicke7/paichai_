@@ -1,0 +1,119 @@
+.modalBody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .inputGroup {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+  .label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+  }
+  .input {
+    width: 93%;
+  }
+  .select {
+    width: 100%;
+  }
+  .input, .select {
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    background-color: var(--background);
+    color: var(--text);
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .input:focus, .select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
+    outline: none;
+  }
+  
+  .gridRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (max-width: 640px) {
+    .gridRow {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  .subjectSection {
+    margin-bottom: 2rem;
+    border-radius: 1rem;
+    background-color: rgba(var(--primary-rgb), 0.04);
+    border: 1px solid rgba(var(--primary-rgb), 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  .subjectSection:hover {
+    box-shadow: 0 5px 15px rgba(var(--primary-rgb), 0.08);
+    background-color: rgba(var(--primary-rgb), 0.06);
+  }
+  
+  .subjectTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.25rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .subjectTitle:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+  }
+  
+  .errorMessage {
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    border-radius: 0.75rem;
+    border-left: 3px solid #dc2626;
+    font-size: 0.95rem;
+  }
+  
+  .successMessage {
+    margin-bottom: 1.25rem;
+    padding: 1rem;
+    background-color: rgba(34, 197, 94, 0.1);
+    color: #16a34a;
+    border-radius: 0.75rem;
+    border-left: 3px solid #16a34a;
+    font-size: 0.95rem;
+  }
+  .buttonRow {
+    display: flex;
+    gap: 1rem;
+    bottom: 0;
+    background-color: var(--background);
+  }
+  
+  @media (max-width: 640px) {
+    .buttonRow {
+      flex-direction: column;
+    }
+  }

@@ -1,0 +1,132 @@
+.menuContainer {
+    position: relative;
+    display: inline-block;
+    width: auto;
+  }
+.avatarButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.25rem;
+    width: 2.25rem;
+    border-radius: 9999px;
+    border: 2px solid transparent;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .avatarButton:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 7px rgba(0, 0, 0, 0.15);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  
+  .avatarButton:after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.2);
+    pointer-events: none;
+  }
+  
+  .avatarImage {
+    height: 120%;
+    width: 200%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .avatarButton:hover .avatarImage {
+    transform: scale(1.1);
+  }
+  
+  .profileMenu {
+    position: absolute;
+    right: 0; /* This ensures the right edge aligns with the parent container */
+    margin-top: 0.75rem;
+    width: 13rem;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    z-index: 50;
+    overflow: hidden;
+    animation: menuSlideIn 0.3s ease;
+    transform-origin: top right;
+  }
+  
+  @keyframes menuSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .profileHeader {
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(to right, rgba(var(--primary-rgb), 0.05), transparent);
+  }
+  
+  .profileName {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  
+  .profileEmail {
+    font-size: 0.75rem;
+    color: gray;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .menuButton {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text);
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  
+  .menuButton:hover {
+    background-color: rgba(var(--primary-rgb), 0.05);
+    padding-left: 1.25rem;
+  }
+  
+  .menuButton:hover:before {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  
+  .menuButton:before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 3px;
+    background-color: var(--primary);
+    opacity: 0;
+    transform: translateX(-5px);
+    transition: all 0.2s ease;
+  }
+  
+ 

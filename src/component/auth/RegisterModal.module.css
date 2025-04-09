@@ -1,0 +1,148 @@
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    padding: 1.5rem 0;
+  }
+  
+  .errorIcon {
+    font-size: 3.5rem;
+    color: #dc2626;
+    margin-bottom: 0.5rem;
+  }
+  
+  .successIcon {
+    font-size: 3.5rem;
+    color: #16a34a;
+    margin-bottom: 0.5rem;
+  }
+  
+  .errorText {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #dc2626;
+  }
+  
+  .successText {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #16a34a;
+  }
+  
+  .subText {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: -0.5rem;
+  }
+  
+  .greeting {
+    text-align: center;
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .greeting span {
+    background: linear-gradient(135deg, var(--primary), #6366f1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    padding: 0 0.25rem;
+  }
+  
+  .inputGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+  .label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+  }
+  
+  .input {
+    height: 3rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--border);
+    font-size: 0.95rem;
+    outline: none;
+    transition: all 0.2s ease;
+    background-color: var(--background);
+    color: var(--text);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    width: 100%;
+  }
+  
+  .input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(var(--primary-rgb), 0.15);
+  }
+  
+  .grid3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.75rem;
+  }
+  
+  @media (max-width: 640px) {
+    .grid3 {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+  
+  .errorBox {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: #dc2626;
+    padding: 1rem;
+    font-size: 0.95rem;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+    border-left: 3px solid #dc2626;
+  }
+  
+  .sectionTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.75rem;
+    text-align: center;
+    color: var(--text);
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .sectionTitle:after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 25%;
+    width: 50%;
+    height: 2px;
+  }
+  
+  .buttonGroup {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  @media (max-width: 640px) {
+    .buttonGroup {
+      flex-direction: column;
+    }
+  }

@@ -1,0 +1,28 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 0;
+    margin-bottom: 16px;
+  }
+  
+  .tag {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    padding: 12px 18px;
+    font-size: 0.85rem;
+    color: var(--text);
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+  
+  
+  
+  .active {
+    outline: 0.3px solid var(--primary);
+    /* outline-color: var(--primary); */
+    border-color: var(--primary);
+
+  }
+  

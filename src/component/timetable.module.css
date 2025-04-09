@@ -1,0 +1,147 @@
+.container {
+  background-color: var(--background);
+  border-radius: 1rem;
+  color: var(--text);
+  max-width: 100%;
+  overflow-x: auto;
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.timetable {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  text-align: center;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.timetable th,
+.timetable td {
+  border: 1px solid var(--border);
+  padding: 0.5rem;
+  min-width: 60px;
+  font-size: 0.75rem;
+  height: 45px;
+  word-break: keep-all;
+}
+
+.timetable thead {
+  background-color: color-mix(in srgb, var(--background) 90%, var(--text));
+}
+
+.timetable td {
+  background-color: color-mix(in srgb, var(--background) 90%, var(--text));
+}
+
+.timetable th:first-child,
+.timetable td:first-child {
+  width: 40px;
+  min-width: 40px;
+}
+
+.timetable thead tr:first-child th:first-child {
+  border-top-left-radius: 1rem;
+}
+
+.timetable thead tr:first-child th:last-child {
+  border-top-right-radius: 1rem;
+}
+
+.timetable tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 1rem;
+}
+
+.timetable tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 1rem;
+}
+
+[data-theme='dark'] .todayHeader {
+  background-color: #2a2a36;
+}
+
+.todayHeader {
+  background-color: #dfdfff;
+}
+
+.todayCell {
+  background-color: #1e1e2e;
+  font-weight: bold;
+}
+
+.subjectCell {
+  color: #ec8e00;
+  font-weight: bold;
+}
+
+[data-theme='dark'] .subjectCell {
+  color: #ffb74d;
+  font-weight: bold;
+}
+
+.loginOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 1rem;
+}
+
+.loginMessage {
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: var(--text);
+  padding: 2rem;
+}
+
+.loginButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--primary);
+  color: black;
+  border-radius: 0.5rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.loginButton:hover {
+  background-color: color-mix(in srgb, var(--primary) 80%, white);
+  transform: translateY(-2px);
+}
+
+.loginButtonWrapper {
+  margin-top: 1rem;
+}
+
+.blurContent {
+  filter: blur(2px);
+  pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .timetable th,
+  .timetable td {
+    padding: 0.4rem;
+    min-width: 50px;
+    font-size: 0.7rem;
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+}

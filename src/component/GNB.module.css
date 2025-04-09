@@ -1,0 +1,114 @@
+.header {
+  width: 100%;
+  height: 60px;
+  background-color: var(--background);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.container {
+  max-width: 1200px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.logo a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.nav {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.navList {
+  display: flex;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navList li {
+  margin: 0 12px;
+}
+
+.navLink {
+  color: #999999;
+  text-decoration: none;
+  font-size: 16px;
+  transition: color 0.2s ease;
+}
+
+[data-theme='light'] .activeLink {
+  color: #000000;
+  font-weight: 500;
+}
+
+[data-theme='dark'] .activeLink {
+  color: #ffffff;
+  font-weight: 500;
+}
+
+
+.actions {
+  display: flex;
+  align-items: center;
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  color: var(--text);
+  margin-right: 8px;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+}
+
+.loginButton {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.loginButton:hover {
+  background-color: #0060d0;
+}
+
+@media (max-width: 768px) {
+  .nav {
+    position: static;
+    transform: none;
+    display: none;
+  }
+  
+  .actions {
+    margin-left: auto;
+  }
+}

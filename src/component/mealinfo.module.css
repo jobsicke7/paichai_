@@ -1,0 +1,74 @@
+.container {
+    color: var(--text);
+    width: 100%;
+    margin-bottom: 50px;
+  }
+  
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .calendarBtn {
+    background: none;
+    border: none;
+    color: var(--text);
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: color 0.3s ease;
+  }
+  
+  .calendarBtn:hover {
+    color: var(--primary);
+  }
+  
+  .datepicker {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+    z-index: 20;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    width: 100%;
+    max-width: 360px;
+  }
+  
+  .mealContainer {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    gap: 1rem;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  
+  .mealContainer::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .mealCard {
+    flex: 1 1 0;
+    min-width: 280px;
+    background-color: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+  }
+  
+  
+  .mealCard h3 {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+    color: var(--primary);
+  }
+  
