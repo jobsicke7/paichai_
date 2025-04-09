@@ -80,7 +80,7 @@ export default async function PostDetailPage({ params }: PostDetailProps) {
         />
         <div className={styles.tags}>
           {post.tags.map((tag: string) => (
-            <span key={tag} className={styles.tag}>#{tag}</span>
+            <span key={tag} className={styles.tag}># {tag}</span>
           ))}
         </div>
       </article>
