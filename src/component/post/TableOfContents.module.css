@@ -48,10 +48,6 @@
   transform: translateX(4px);
 }
 
-.item a:hover {
-  opacity: 1;
-  color: #aaddff;
-}
 
 .item a.activeLink {
   opacity: 1;
