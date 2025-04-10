@@ -1,0 +1,20 @@
+name: Send Build Info to Supabase
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  send-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send commit to Supabase API
+        run: |
+          curl -X POST https://paichai.vercel.app/api/build-info/update \
+          -H "Content-Type: application/json" \
+          -d '{
+            "sha": "${{ github.sha }}",
+            "message": "${{ github.event.head_commit.message }}"
+          }'

@@ -1,4 +1,3 @@
-// app/api/build-info/route.ts
 import { NextResponse } from 'next/server';
 import { createClient } from '@supabase/supabase-js';
 
@@ -15,7 +14,9 @@ export async function GET() {
     .limit(1)
     .single();
 
-  if (error) return NextResponse.json({ error }, { status: 500 });
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
 
   return NextResponse.json(data);
 }
