@@ -1,13 +1,14 @@
 "use client";
 
+import { useEffect } from "react";
 import styles from "./not-found.module.css";
 import Link from "next/link";
-import { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: '404 | paichai.',
-};
 export default function NotFound() {
+  useEffect(() => {
+    document.title = "404 | paichai.";
+  }, []);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.errorCode}>404</h1>
