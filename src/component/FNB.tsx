@@ -54,7 +54,7 @@ const FNB = () => {
           <div className={styles.copyright}>
             © 2025 paichai. All rights reserved.
             <span className={styles.textSeparator}>
-              본 서비스는 배재고등학교에서 공식적으로 운영하지 않습니다.
+              본 서비스는 배재고등학교에서 공식적으로 운영하고 있지 않습니다.
             </span>
           </div>
         </div>
