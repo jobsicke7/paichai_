@@ -50,7 +50,7 @@
 
 .item a:hover {
   opacity: 1;
-  color: var(--primary, #3498db);
+  color: #aaddff;
 }
 
 .item a.activeLink {
