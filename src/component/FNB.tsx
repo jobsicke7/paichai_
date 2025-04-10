@@ -5,17 +5,17 @@ import Link from 'next/link';
 import styles from './FNB.module.css';
 import { MdEmail, MdContactSupport, MdPrivacyTip, MdGavel } from 'react-icons/md';
 import { AiOutlineDeploymentUnit } from 'react-icons/ai';
+import { formatDate } from '@/lib/utils/date'
 
 const FNB = () => {
-  const [buildInfo, setBuildInfo] = useState<{ sha: string; message: string } | null>(null);
-
+  const [buildInfo, setBuildInfo] = useState<{ sha: string; message: string ; created_at: any;} | null>(null);
   useEffect(() => {
     fetch('/api/build-info')
       .then(res => res.json())
       .then(data => setBuildInfo(data))
       .catch(err => console.error('빌드 정보 로딩 실패:', err));
   }, []);
-
+  const formattedDate = typeof formatDate === 'function' ? formatDate(buildInfo?.created_at) : buildInfo?.created_at
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
@@ -56,10 +56,10 @@ const FNB = () => {
           <div className={styles.infoColumn}>
             {buildInfo?.sha ? (
               <div className={styles.buildInfo}>
-                최근 빌드: <code>{buildInfo.sha.slice(0, 7)}</code> – {buildInfo.message || ''}
+                최근 빌드: <code>{buildInfo.sha.slice(0, 7)}</code> – {formattedDate || ''}
               </div>
             ) : (
-              <div className={styles.buildInfo}>빌드 정보 없음</div>
+              <div className={styles.buildInfo}></div>
             )}
             <div className={styles.copyright}>
               © 2025 paichai. All rights reserved.
