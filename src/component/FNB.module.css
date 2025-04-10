@@ -10,21 +10,26 @@
 
 .container {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 24px;
+  margin: 0 auto 40px auto;
+  padding: 0 25x;
 }
 
 .top {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
-  margin-bottom: 32px;
+  align-items: flex-start;
+  gap: 48px;
+  flex-wrap: wrap;
 }
 
-.columns {
+.leftColumns {
   display: flex;
+  gap: 32px;
   flex-wrap: wrap;
-  gap: 48px;
+}
+
+.menuColumn {
+  min-width: 180px;
 }
 
 .menuColumn h3 {
@@ -57,13 +62,17 @@
   gap: 6px;
 }
 
-.bottom {
+.infoColumn {
+  min-width: 240px;
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
   gap: 8px;
 }
 
 .buildInfo {
+  margin-top: 40px;
   font-family: monospace;
   font-size: 13px;
   opacity: 0.7;
@@ -71,9 +80,15 @@
 
 .textSeparator {
   display: block;
-  margin-top: 4px;
+  margin-top: 2px;
   opacity: 0.6;
   font-size: 12px;
+}
+
+.copyright {
+  font-size: 13px;
+  line-height: 1.5;
+  opacity: 0.8;
 }
 
 @media (max-width: 768px) {
@@ -82,12 +97,13 @@
     gap: 32px;
   }
 
-  .columns {
+  .leftColumns {
     flex-direction: column;
     gap: 32px;
   }
 
-  .bottom {
+  .infoColumn {
     align-items: flex-start;
+    text-align: left;
   }
 }
