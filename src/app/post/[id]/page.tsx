@@ -6,7 +6,7 @@ import ShareButton from '@/component/post/ShareButton'
 import ProfileMenu from '@/component/auth/ProfileMenu'
 import ActionButtons from './button'
 import { supabase } from '@/lib/supabase'
-
+import { Metadata } from 'next'
 
 type PostDetailProps = {
   params: { id: string }
@@ -22,6 +22,17 @@ type PostWithProfile = {
     name: string
     avatar_url: string | null
   } | null
+}
+export async function generateMetadata({ params }: PostDetailProps): Promise<Metadata> {
+  const { data } = await supabase
+    .from('posts')
+    .select('title')
+    .eq('id', (await params).id)
+    .single<{ title: string }>()
+
+  return {
+    title: data?.title + ' | paichai.' || '게시글',
+  }
 }
 
 export default async function PostDetailPage({ params }: PostDetailProps) {

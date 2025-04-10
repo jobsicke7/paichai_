@@ -3,13 +3,15 @@
 import styles from '@/app/page.module.css';
 import { supabase, getProfile, UserProfile } from '@/lib/supabase';
 import Timetable from '@/component/timetable';
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState, useCallback, use } from 'react';
 
 export default function Home() {
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [loading, setLoading] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
+  useEffect(() => {
+    document.title = '시간표 | paichai.';
+  }, []);
   const fetchProfile = useCallback(async () => {
     const {
       data: { session },

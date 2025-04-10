@@ -10,7 +10,7 @@ import ImageUploader from '@/component/post/ImageUploader'
 import { toast } from 'sonner'
 import TagEditor from '@/component/post/TagEditor'
 import styles from './page.module.css'
-
+import Head from 'next/head'
 
 const Editor = dynamic(() => import('@/component/post/Editor'), { ssr: false })
 
@@ -25,7 +25,13 @@ export default function EditPostPage() {
   const [loading, setLoading] = useState(true)
   const [userId, setUserId] = useState<string | null>(null)
   const [userEmail, setUserEmail] = useState<string | null>(null)
-
+  useEffect(() => {
+    if (title) {
+      document.title = `${title} 수정 | paichai.`;
+    } else {
+      document.title = '게시글 수정 | paichai.';
+    }
+  }, [title]);
   useEffect(() => {
     const getUser = async () => {
       const {

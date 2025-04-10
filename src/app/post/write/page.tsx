@@ -10,6 +10,8 @@ import ImageUploader from '@/component/post/ImageUploader'
 import { toast } from 'sonner'
 import TagEditor from '@/component/post/TagEditor'
 import styles from './page.module.css'
+import { Metadata } from 'next'
+
 
 const Editor = dynamic(() => import('@/component/post/Editor'), { ssr: false })
 
@@ -23,7 +25,9 @@ export default function WritePostPage() {
   const [loading, setLoading] = useState(false)
   const [userId, setUserId] = useState<string | null>(null)
   const [userEmail, setUserEmail] = useState<string | null>(null)
-
+  useEffect(() => {
+    document.title = title ? `${title} 작성 | paichai.` : '게시글 작성 | paichai.'
+  }, [title]);
   useEffect(() => {
     const getUser = async () => {
       const {

@@ -19,6 +19,12 @@ type PostItemProps = {
   tags: string[]
 }
 
+function cleanContent(content: string): string {
+  let text = content.replace(/<[^>]+>/g, '')
+  text = text.replace(/&[a-zA-Z0-9#]+;/g, '')
+  return text
+}
+
 export default function PostItem({
   id,
   title,
@@ -28,12 +34,12 @@ export default function PostItem({
   author,
   tags,
 }: PostItemProps) {
-  const plainText = content.replace(/<[^>]+>/g, '')
-  const previewText = plainText.length > 100
-    ? plainText.slice(0, 100) + '...'
-    : plainText
+  const plainText = cleanContent(content)
+  const previewText =
+    plainText.length > 100 ? plainText.slice(0, 100) + '...' : plainText
 
-  const formattedDate = typeof formatDate === 'function' ? formatDate(created_at) : created_at;
+  const formattedDate =
+    typeof formatDate === 'function' ? formatDate(created_at) : created_at
 
   return (
     <Link href={`/post/${id}`} className={styles.card}>

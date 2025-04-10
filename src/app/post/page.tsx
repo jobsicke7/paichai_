@@ -62,6 +62,10 @@ export default function PostPage() {
     return matchesSearch && matchesTag;
   });
   useEffect(() => {
+      document.title = '게시글 | paichai.';
+    }
+  );
+  useEffect(() => {
     const getUser = async () => {
       const {
         data: { user },

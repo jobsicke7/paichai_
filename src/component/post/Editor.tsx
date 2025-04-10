@@ -123,7 +123,7 @@ export default function Editor({ content, onChangeAction }: Props) {
   )
 
   return (
-    <div className={styles.editorWrapper}>
+    <div className={styles.editorWrapper} style={{ maxHeight: '80vh', overflowY: 'auto' }}>
       <div className={styles.toolbar}>
         <IconButton icon={Bold} onClick={() => editor?.chain().focus().toggleBold().run()} label="Bold" />
         <IconButton icon={Italic} onClick={() => editor?.chain().focus().toggleItalic().run()} label="Italic" />

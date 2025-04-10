@@ -31,7 +31,7 @@ const GNB = () => {
             <li>
               <Link 
                 href="/post" 
-                className={`${styles.navLink} ${pathname === '/post' ? styles.activeLink : ''}`}
+                className={`${styles.navLink} ${pathname.startsWith('/post') ? styles.activeLink : ''}`}
               >
                 게시글
               </Link>
@@ -39,7 +39,7 @@ const GNB = () => {
             <li>
               <Link 
                 href="/schedule" 
-                className={`${styles.navLink} ${pathname === '/schedule' ? styles.activeLink : ''}`}
+                className={`${styles.navLink} ${pathname.startsWith('/schedule') ? styles.activeLink : ''}`}
               >
                 시간표
               </Link>
@@ -47,7 +47,7 @@ const GNB = () => {
             <li>
               <Link 
                 href="/memo" 
-                className={`${styles.navLink} ${pathname === '/memo' ? styles.activeLink : ''}`}
+                className={`${styles.navLink} ${pathname.startsWith('/memo') ? styles.activeLink : ''}`}
               >
                 메모
               </Link>

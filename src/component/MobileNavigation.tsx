@@ -63,16 +63,22 @@ const MobileNavigation = () => {
   return (
     <nav className={`${styles.mobileNav} ${isVisible ? styles.visible : ''} ${isAtTop ? styles.atTop : ''}`}>
       <div className={styles.container}>
-        {navItems.map((item) => (
+      {navItems.map((item) => {
+        const isActive = item.href === '/'
+          ? pathname === '/'
+          : pathname.startsWith(item.href);
+
+        return (
           <Link 
             key={item.href} 
             href={item.href}
-            className={`${styles.navItem} ${pathname === item.href ? styles.active : ''}`}
+            className={`${styles.navItem} ${isActive ? styles.active : ''}`}
           >
             <div className={styles.icon}>{item.icon}</div>
             <span className={styles.label}>{item.label}</span>
           </Link>
-        ))}
+        );
+      })}
       </div>
     </nav>
   );

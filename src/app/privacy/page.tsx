@@ -1,7 +1,11 @@
 import { supabase } from '@/lib/supabase';
 import DocViewer from '@/component/DocViewer';
 import { cache } from 'react';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+  title: '개인정보 처리방침 | paichai.',
+};
 const getDocContent = cache(async (type: string) => {
   try {
     const { data, error } = await supabase

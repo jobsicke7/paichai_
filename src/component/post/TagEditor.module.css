@@ -4,7 +4,7 @@
     gap: 0.5rem;
     padding: 1rem 1rem;
     border: 1px solid var(--border);
-    border-radius: 0.5rem;
+    border-radius: 16px;
     background-color: var(--background);
     margin-top: 1rem;
   }
@@ -14,9 +14,10 @@
     align-items: center;
     background-color: var(--primary);
     color: white;
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 1em;
     font-size: 0.875rem;
+
   }
   
   .remove {

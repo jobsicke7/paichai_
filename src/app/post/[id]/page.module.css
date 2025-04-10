@@ -58,7 +58,9 @@
   line-height: 1.75;
   color: var(--text);
 }
-
+.body h1 {
+  font-size: 2rem;
+}
 .body img,
 .body video,
 .body iframe {

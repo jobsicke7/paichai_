@@ -1,44 +1,86 @@
 .editorWrapper {
-    border: 1px solid var(--border);
-    background-color: var(--background);
-    border-radius: 12px;
-    padding: 1rem;
-    margin-top: 1rem;
-    transition: all 0.2s ease-in-out;
-  }
+  border: 1px solid var(--border);
+  background-color: var(--background);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+  transition: all 0.3s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--background);
+  padding: 0.75rem 0.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+}
   
-  .toolbar {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-  }
   
-  .button {
-    background: var(--background);
-    color: var(--text);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 0.4rem 0.6rem;
-    cursor: pointer;
-    font-size: 0.9rem;
-    font-weight: bold;
-    transition: background 0.2s ease, color 0.2s ease;
-  }
+.button {
+  background: var(--background);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  position: relative;
+}
+
+.button:hover {
+  background-color: var(--primary);
+  border-color: var(--primary);
+  color: #fff;
+}
+.button[aria-label]::after {
+  content: attr(aria-label);
+  position: absolute;
+  bottom: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--text);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out;
+  z-index: 20;
+}
+
+.button:hover::after {
+  opacity: 1;
+}
+.editorContent:focus {
+  outline: none;
+  border-color: transparent;
+  box-shadow: none;
+}
   
-  .button:hover {
-    background-color: var(--primary);
-    color: #fff;
-  }
-  
-  .editorContent {
-    padding: 10px;
-    min-height: 300px;
-    line-height: 1.7;
-    font-size: 1rem;
-    color: var(--text);
-  }
-  
+.editorContent h1,
+.editorContent h2,
+.editorContent h3 {
+  font-weight: 700;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
   .editorContent h1, .editorContent h2, .editorContent h3 {
     font-weight: 700;
     margin-top: 1.5rem;
