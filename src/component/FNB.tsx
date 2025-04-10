@@ -38,6 +38,15 @@ const FNB = () => {
                   </svg>
                   질문하기
                 </Link>
+                <Link href="https://status.jobsickes.shop" className={styles.iconLink}>
+                  <svg className={styles.icon} viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10
+                            10-4.48 10-10S17.52 2 12 2zm8 10c0 1.29-.31 2.5-.85 3.58-.2-.04-.41-.07-.63-.07-1.1 0-2 .9-2 2
+                            0 .34.09.65.24.93-1.04.35-2.15.56-3.3.56-1.15 0-2.26-.21-3.3-.56.15-.28.24-.59.24-.93
+                            0-1.1-.9-2-2-2-.22 0-.43.03-.63.07C4.31 14.5 4 13.29 4 12c0-4.42 3.58-8 8-8s8 3.58 8 8z"/>
+                  </svg>
+                  서비스 상태
+                </Link>
               </div>
             </div>
           </div>
