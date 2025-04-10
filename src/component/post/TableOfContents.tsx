@@ -195,7 +195,7 @@ export default function TableOfContents({ content }: { content: string }) {
               onClick={(e) => handleClickHeading(e, heading.id)}
               className={activeId === heading.id ? styles.activeLink : ''}
             >
-              {heading.text}
+              {heading.text.length > 25 ? heading.text.slice(0, 25) + '...' : heading.text}
             </a>
           </li>
         ))}
