@@ -41,10 +41,6 @@ const FNB = () => {
                   <MdEmail size={16} />
                   <span>이메일</span>
                 </Link>
-                <Link href="/contact" className={styles.iconLink}>
-                  <MdContactSupport size={16} />
-                  <span>질문하기</span>
-                </Link>
                 <Link href="https://status.jobsickes.shop" className={styles.iconLink}>
                   <AiOutlineDeploymentUnit size={16} />
                   <span>서비스 상태</span>
